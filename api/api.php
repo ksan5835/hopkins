@@ -47,7 +47,7 @@
 		 *  pwd : <USER PASSWORD>
 		 */
 		
-		private function login(){
+		/*private function login(){
 			// Cross validation if the request method is POST else it will return "Not Acceptable" status
 			if($this->get_request_method() != "POST"){
 				$this->response('',406);
@@ -73,7 +73,7 @@
 			// If invalid inputs "Bad Request" status message and reason
 			$error = array('status' => "Failed", "msg" => "Invalid Email address or Password");
 			$this->response($this->json($error), 400);
-		}
+		}*/
 		
 		private function users(){	
 			// Cross validation if the request method is GET else it will return "Not Acceptable" status
@@ -92,7 +92,7 @@
 			$this->response('',204);	// If no records "No Content" status
 		}
 		
-		private function deleteUser(){
+		/*private function deleteUser(){
 			// Cross validation if the request method is DELETE else it will return "Not Acceptable" status
 			if($this->get_request_method() != "DELETE"){
 				$this->response('',406);
@@ -104,7 +104,7 @@
 				$this->response($this->json($success),200);
 			}else
 				$this->response('',204);	// If no records "No Content" status
-		}
+		}*/
 		
 		/*
 		 *	Encode array into JSON
