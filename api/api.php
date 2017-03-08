@@ -22,9 +22,9 @@
 		 *  Database connection 
 		*/
 		private function dbConnect(){
-			$this->db = mysql_connect(self::DB_SERVER,self::DB_USER,self::DB_PASSWORD);
+			$this->db = mysqli_connect(self::DB_SERVER,self::DB_USER,self::DB_PASSWORD);
 			if($this->db)
-				mysql_select_db(self::DB,$this->db);
+				mysqli_select_db($this->db,self::DB);
 		}
 		
 		/*
@@ -33,7 +33,7 @@
 		 *
 		 */
 		public function processApi(){
-			$func = strtolower(trim(str_replace("/","",$_REQUEST['rquest'])));
+			$func = strtolower(trim(str_replace("/","",@$_REQUEST['rquest'])));
 			if((int)method_exists($this,$func) > 0)
 				$this->$func();
 			else
@@ -75,15 +75,16 @@
 			$this->response($this->json($error), 400);
 		}*/
 		
-		private function users(){	
+		private function users(){
+				
 			// Cross validation if the request method is GET else it will return "Not Acceptable" status
 			if($this->get_request_method() != "GET"){
 				$this->response('',406);
 			}
-			$sql = mysql_query("SELECT user_id, user_fullname, user_email FROM users WHERE user_status = 1", $this->db);
-			if(mysql_num_rows($sql) > 0){
+			$sql = mysqli_query($this->db, "SELECT user_id, user_fullname, user_email FROM users WHERE user_status = 1");
+			if(mysqli_num_rows($sql) > 0){
 				$result = array();
-				while($rlt = mysql_fetch_array($sql,MYSQL_ASSOC)){
+				while($rlt = mysqli_fetch_array($sql,MYSQL_ASSOC)){
 					$result[] = $rlt;
 				}
 				// If success everythig is good send header as "OK" and return list of users in JSON format
