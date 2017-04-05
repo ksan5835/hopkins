@@ -1,17 +1,31 @@
-<DOCTYPE html>
-<html>
-  <head>
-  </head>
-  <body>
-    <header>
-      <a href='/php_mvc_blog'>Home</a>
-      <a href='?controller=posts&action=index'>Posts</a>
-    </header>
+<?php 
+if($action =="login" && $controller == "login"){
+    require_once('templates/hopkins/header_login.php ');
+}else{
+    require_once('templates/hopkins/header_dashboard.php ');
+}
+?>
+<!-- end f header section -->
 
-    <?php require_once('routes.php'); ?>
 
-    <footer>
-      Copyright
-    </footer>
-  <body>
-<html>
+<?php require_once('routes.php'); ?>
+
+<!-- include footer section -->
+<?php
+
+if($action =="login" && $controller == "login"){
+    require_once('templates/hopkins/footer_login.php ');
+}else{
+    require_once('templates/hopkins/footer_dashboard.php ');
+}
+
+?>
+
+<!-- end of footer section -->
+   
+        
+
+
+
+
+        
