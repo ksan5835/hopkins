@@ -31,7 +31,7 @@
   $controllers = array('pages' => ['home', 'error'],
   					      'login' => ['login', 'error','processlogin'],
                   'home' => ['dashboard'],
-                  'user' => ['addnewuser','manageuser'],
+                  'user' => ['addnewuser','manageuser','registeruser','registernonadminuser','managereport','nonadminuser','nonadminmange','nonadminreport'],
                   'posts' => ['index', 'show']);
 
   if (array_key_exists($controller, $controllers)) {

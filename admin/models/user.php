@@ -36,5 +36,26 @@
 
       return new Post($post['id'], $post['author'], $post['content']);
     }
+
+    public static function insertUser($arrInsertData){
+
+      //print_r($arrInsertData);
+      //echo "Demo from model";
+      $db = Db::getInstance();
+      $req = $db->prepare('insert into hp_adminusers ( user_firstname,user_lastname,user_email,user_password,user_activestatus,user_lastlogin ) values ( :fname,:lname,:uemail,:upass,:uactive,:ulastlog )');
+      
+      $req->execute(array('fname' => 'test','lname' => 'tester','uemail' => 'demo@user.com','upass' => 'demo','uactive' => '1','ulastlog' => '18-06-12 10:34:09 AM'));
+      
+    }
+      public static function Adduser($arrInsertData){
+
+      //print_r($arrInsertData);
+      //echo "Demo from model";
+      $db = Db::getInstance();
+      $req = $db->prepare('insert into hp_nonadmin ( firstname,lastname,email_id ) values ( :firstn,:lastn,:useremail )');
+      
+      $req->execute(array('firstn' => 'first','lastn' => 'second','useremail' => 'test@user.com'));
+      
+    }
   }
 ?>
