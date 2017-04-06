@@ -28,12 +28,13 @@ class UsersController extends VanillaController {
 		$user_available = $this->User->search();
 		$this->set('user_available',$user_available);
 		
-		if($user_available){
+		if(!empty($user_available)){
 			$status = '200';
 		}else{
 			$status = '404';
 		}
-		return $status;
+		
+		return json_decode($status,'true');
 	}
 
 
