@@ -10,7 +10,7 @@
   public function processlogin(){
      //echo "test";
     //print_r($_POST);
-    header("location: ".SITE_ROOT.'/'.'index.php?controller=home&action=dashboard');
+    header("location: ".SITE_ROOT.'index.php?controller=home&action=dashboard');
    //require_once('views/home/home.php');
   }
 
