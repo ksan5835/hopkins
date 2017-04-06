@@ -57,7 +57,7 @@
        <div class="form-group">
                     <label for="" class="col-sm-2 control-label">Phone:</label>
                     <div class="col-sm-8">
-                    <input type="text" class="input-mask form-control" data-inputmask="&apos;mask&apos;:&apos;999- 999-9999&apos;">
+                    <input type="text" class="input-mask form-control" data-inputmask="&apos;mask&apos;:&apos;999- 999-9999&apos;" required>
                     <div class="help-block">999- 999-9999</div>
                 </div>
                 </div>
