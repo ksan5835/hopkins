@@ -469,6 +469,7 @@
     </a>
     <ul>
         <li class="header"><span>Admin Users</span></li>
+         <li><a href="<?php echo SITE_ROOT;?>index.php?controller=user&action=addnewuser" title="Carousels"><span>Add New User</span></a></li>
         <li><a href="carousels.html" title="Carousels"><span>Manage Users</span></a></li>
         <li><a href="slideshows.html" title="Slideshows"><span>Manage Reports</span></a></li>
 

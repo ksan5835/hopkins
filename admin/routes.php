@@ -1,4 +1,5 @@
 <?php
+
   function call($controller, $action) {
     require_once('controllers/' . $controller . '_controller.php');
 
@@ -22,6 +23,7 @@
       break;
     }
 */
+
     $controller->{ $action }();
   }
 
@@ -29,6 +31,7 @@
   $controllers = array('pages' => ['home', 'error'],
   					      'login' => ['login', 'error','processlogin'],
                   'home' => ['dashboard'],
+                  'user' => ['addnewuser','manageuser'],
                   'posts' => ['index', 'show']);
 
   if (array_key_exists($controller, $controllers)) {

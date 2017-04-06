@@ -7,7 +7,6 @@ if($action =="login" && $controller == "login"){
 ?>
 <!-- end f header section -->
 
-
 <?php require_once('routes.php'); ?>
 
 <!-- include footer section -->
