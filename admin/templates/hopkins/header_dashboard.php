@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
 <!--[if gte IE 9]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
 <!--[if IE 8]><meta http-equiv="X-UA-Compatible" content="IE=8"><![endif]-->
-<title> Bratilius - Bootstrap Frontend &amp; Admin Template </title>
+<title> Hopkins &amp; Admin Template </title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
