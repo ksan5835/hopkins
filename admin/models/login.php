@@ -1,4 +1,5 @@
 <?php
+
   class LoginModel {
     // we define 3 attributes
     // they are public so that we can access them using $post->author directly
@@ -36,5 +37,21 @@
 
       return new Post($post['id'], $post['author'], $post['content']);
     }
+       
+      public static function adminLogin($arrPostData){
+
+        $loUsername = $arrPostData['hpusername'];
+        $lopassword = $arrPostData['hppassword'];  
+        $db = Db::getInstance();      
+        $req = $db->prepare('SELECT * FROM hp_adminusers WHERE user_email = :adminemail AND user_password = :adminpwd');  
+        $req->execute(array('adminemail' => $loUsername,'adminpwd' => $lopassword));
+        $reUserData = $req->fetch();  
+        return $reUserData;
+         
+           
+   
+               }
+
+      
   }
 ?>

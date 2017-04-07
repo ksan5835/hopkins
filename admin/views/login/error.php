@@ -19,11 +19,14 @@
                 <div class="divider"></div>
                 Contents will come here
                 <div class="divider"></div>
-               
+               <div class="divider"></div>
+                <h3 class="text-transform-upr font-size-17">email and password isn't matched</h3>
+                <div class="divider"></div>
             
             </div>
             
             <div class="col-md-7">
+               
                 <form method="post" action="<?php echo SITE_ROOT;?>index.php?controller=login&action=processlogin">
                     <div class="content-box">
                         <h3 class="content-box-header content-box-header-alt bg-default">
@@ -56,7 +59,7 @@
                             <div class="form-group">
                                 <a href="" title="Recover password">Forgot Your Password?</a>
                             </div>
-                            <button class="btn btn-success btn-block" name="login">Sign In</button>
+                            <button class="btn btn-success btn-block">Sign In</button>
                         </div>
                     </div>
                 </form>
