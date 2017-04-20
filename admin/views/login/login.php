@@ -1,5 +1,4 @@
 <?php  require_once('templates/hopkins/header_login.php '); ?>
-
 <style type="text/css">
 
     body {
@@ -10,19 +9,18 @@
 </style>
 <div class="center-vertical">
     <div class="center-content">
-
         <div class="col-md-6 clearfix center-margin">
-            
+
             <div class="col-md-5">
                 <h3 class="text-transform-upr font-size-17">Hopkins International School</h3>
                 <p class="font-gray">Beyond schooling...</p>
                 <div class="divider"></div>
                 Contents will come here
                 <div class="divider"></div>
-               
-            
+                <?php if (isset($error)) { ?> 
+                <small style="color:#aa000; "><?php echo $error; ?> </small>
+    <?php } ?>
             </div>
-            
             <div class="col-md-7">
                 <form method="post" action="<?php echo SITE_ROOT;?>index.php?controller=login&action=processlogin">
                     <div class="content-box">
@@ -55,11 +53,15 @@
                             </div>
                             <div class="form-group">
                                 <a href="" title="Recover password">Forgot Your Password?</a>
+                    
                             </div>
+                           
+                            
                             <button class="btn btn-success btn-block" name="login">Sign In</button>
                         </div>
                     </div>
                 </form>
+               
             </div>
             
         </div>
@@ -69,9 +71,7 @@
 
 
 
-
-    
-
+    <script type="text/javascript" src="<?php echo TEMPLATE_PATH; ?>/assets-minified/widgets/modal/modal.js"></script>
     <script type="text/javascript" src="<?php echo TEMPLATE_PATH; ?>/assets-minified/all-demo.js"></script>
     <!--[if !(IE 8)]><!-->
     <script type="text/javascript" src="<?php echo TEMPLATE_PATH; ?>/assets-minified/widgets/skycons/skycons.js"></script>

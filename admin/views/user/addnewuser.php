@@ -1,4 +1,4 @@
-
+<?php require_once('templates/hopkins/header_dashboard.php '); ?>
 <div id="page-content-wrapper" class="rm-transition">
 
 
@@ -6,7 +6,7 @@
 
     <div id="page-content">
 
-       
+
         <div class="page-box">
             <h3 class="page-title">
                 Add new Users
@@ -48,7 +48,7 @@
                 <div class="form-group">
                     <label for="" class="col-sm-2 control-label">Phone:</label>
                     <div class="col-sm-8">
-                        <input type="text" class="input-mask form-control" data-inputmask="&apos;mask&apos;:&apos;999-999-9999&apos;" required>
+                        <input type="text" name="hpuserphone" class="input-mask form-control" data-inputmask="&apos;mask&apos;:&apos;999-999-9999&apos;" required>
                         <div class="help-block">999-999-9999</div>
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                     <div class="col-sm-8">
                         <form>
 
-                <select class="form-control" required>
+                            <select class="form-control" required>
                 <option>Select</option>
                 <option>Admin</option>
                 <option>Manager</option>
@@ -69,24 +69,26 @@
                   </select>
 
                         </form>
-                <div class="divider"></div>
-                <div class="form-group">
-                    <input type="hidden" name="superhidden" id="superhidden">
-                    <div class="col-sm-offset-2 col-sm-8">
-                        <button class="btn btn-md btn-primary">
-                     Submit
-        </button>
-                    </div>
+                        <div class="divider"></div>
+                        <div class="form-group">
+                            <input type="hidden" name="superhidden" id="superhidden">
+                            <div class="col-sm-offset-2 col-sm-8">
+                                <button class="btn btn-md btn-primary">
+                                       Submit
+                                </button>
+                            </div>
                         </div>
 
-            </div>
+                    </div>
 
-            </div>            </form>
+                </div>
+            </form>
 
             <!-- #page-content -->
 
         </div>
-         <script type="text/javascript" src="<?php echo TEMPLATE_PATH; ?>/assets-minified/widgets/parsley/parsley.js"></script>
+        <?php  require_once('templates/hopkins/footer_dashboard.php '); ?>
+        <script type="text/javascript" src="<?php echo TEMPLATE_PATH; ?>/assets-minified/widgets/parsley/parsley.js"></script>
         <script type="text/javascript" src="<?php echo TEMPLATE_PATH; ?>/assets-minified/widgets/input-mask/inputmask.js"></script>
 
         <script type="text/javascript">

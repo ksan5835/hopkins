@@ -1,3 +1,4 @@
+<?php require_once('templates/hopkins/header_dashboard.php '); ?>
 <div id="page-content-wrapper" class="rm-transition">
 
                     
@@ -62,3 +63,4 @@
 </div><!-- #page-content -->
 
                 </div><!-- #page-content-wrapper -->
+ <?php  require_once('templates/hopkins/footer_dashboard.php '); ?>

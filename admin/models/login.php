@@ -38,20 +38,18 @@
       return new Post($post['id'], $post['author'], $post['content']);
     }
        
-      public static function adminLogin($arrPostData){
-
+        public static function adminLogin($arrPostData){
+         //print_r($arrPostData);
         $loUsername = $arrPostData['hpusername'];
-        $lopassword = $arrPostData['hppassword'];  
+        $lopassword = $arrPostData['hppassword']; 
         $db = Db::getInstance();      
         $req = $db->prepare('SELECT * FROM hp_adminusers WHERE user_email = :adminemail AND user_password = :adminpwd');  
+        echo $req;
         $req->execute(array('adminemail' => $loUsername,'adminpwd' => $lopassword));
         $reUserData = $req->fetch();  
         return $reUserData;
          
-           
-   
-               }
+    }
 
-      
   }
 ?>

@@ -1,3 +1,4 @@
+<?php require_once('templates/hopkins/header_dashboard.php '); ?>
 <div id="page-content-wrapper" class="rm-transition">
 
 
@@ -32,7 +33,7 @@
                 <span class="required">*</span>
             </label>
                     <div class="col-sm-8">
-                        <input class="form-control" type="text" id="email" name="hpuserfirstname" required>
+                        <input class="form-control" type="text" id="text" name="hpnonadminfname" required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -41,10 +42,18 @@
                 <span class="required">*</span>
             </label>
                     <div class="col-sm-8">
-                        <input class="form-control" type="text" id="email" name="hpuserlastname" required>
+                        <input class="form-control" type="text" id="text" name="hpnonadminlname" required>
                     </div>
                 </div>
-             
+             <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">
+               Email:
+                <span class="required">*</span>
+            </label>
+                    <div class="col-sm-8">
+                        <input class="form-control" type="email" id="text" name="hpnonadminemail" required>
+                    </div>
+                </div>
 
                 <div class="form-group">
                     <label for="" class="col-sm-2 control-label">
@@ -82,3 +91,4 @@
 
         </div>
         <!-- #page-content-wrapper -->
+         <?php  require_once('templates/hopkins/footer_dashboard.php '); ?>

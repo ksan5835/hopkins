@@ -470,8 +470,8 @@
     <ul>
         <li class="header"><span>Admin Users</span></li>
          <li><a href="<?php echo SITE_ROOT;?>index.php?controller=user&action=addnewuser" title="Carousels"><span>Add New User</span></a></li>
-        <li><a href="<?php echo SITE_ROOT;?>index.php?controller=user&action=managereport" title="Carousels"><span>Manage Users</span></a></li>
-        <li><a href="<?php echo SITE_ROOT;?>index.php?controller=user&action=manageuser" title="Slideshows"><span>Manage Reports</span></a></li>
+        <li><a href="<?php echo SITE_ROOT;?>index.php?controller=user&action=manageuser" title="Carousels"><span>Manage Users</span></a></li>
+        <li><a href="<?php echo SITE_ROOT;?>index.php?controller=user&action=managereport" title="Slideshows"><span>Manage Reports</span></a></li>
 
         
     </ul>
