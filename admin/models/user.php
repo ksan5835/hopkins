@@ -110,15 +110,15 @@
         
      }
       
-       public static function updateteuser($updateID) {
-      $db = Db::getInstance();
-          echo $updateID;
-      $deleteID = intval($updateID);
-      $req = $db->prepare('DELETE FROM hp_adminusers WHERE id = :id');
-      $req->execute(array('id' => $updateID));
-      return $req;
-         
-    }
+//       public static function updateteuser($updateID) {
+//      $db = Db::getInstance();
+//          echo $updateID;
+//      $deleteID = intval($updateID);
+//      $req = $db->prepare('DELETE FROM hp_adminusers WHERE id = :id');
+//      $req->execute(array('id' => $updateID));
+//      return $req;
+//         
+//    }
 
       
   }
