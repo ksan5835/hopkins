@@ -33,18 +33,12 @@
       require_once('views/user/nonadminreport.php');
     }
     public function registeruser(){
-    // print_r($_POST);
+     
      $arrInsertData = UserModel::insertUpdateUser($_POST);
      if($arrInsertData){
        echo 'sucessfully inserted data';
          header("location: ".SITE_ROOT.'index.php?controller=user&action=manageuser');
       }
-       else
-      {
-           //echo "update data";
-       // header("location: ".SITE_ROOT.'index.php?controller=user&action=manageuser');
-      } 
-        
     }
  public function registernonadminuser($arrInsertData){
      //print_r($_POST);echo 'test';die();
@@ -71,6 +65,7 @@ public function deletemanageuser() {
         echo "not deleted";
     }
     }
+
 public function editmanageuser() {
     $editID = $_GET['editid'];
     //echo $editID;
@@ -85,6 +80,7 @@ public function editmanageuser() {
     $reUserDetails  = array("fname" => $editUserDetails['user_firstname'],"lname" => $editUserDetails['user_lastname'],"uemail" => $editUserDetails['user_email'],"uphone" => $editUserDetails['user_phone'],"uid" => $editID );
     echo $reUserDetails['uphone'];
     //die;
+    
     $actflag = "updateuser";    
     require_once('views/user/addnewuser.php');
 }   

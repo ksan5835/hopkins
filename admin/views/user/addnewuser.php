@@ -21,7 +21,7 @@
                     <label for="" class="col-sm-2 control-label">
                 First Name:
                 <span class="required">*</span>
-            </label>
+                    </label>
                     <div class="col-sm-8">
                         <input class="form-control" type="text" name="hpuserfirstname" value="<?php echo @$reUserDetails['fname'];?>"  required >
                     </div>
