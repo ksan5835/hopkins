@@ -9,7 +9,10 @@
     }
 	public function addnewuser() {
       // we store all the posts in a variable
-    // echo "welcome to dashboard";
+     //echo "welcome to dashboard";
+      $actflag = "addnew"; 
+        
+         //$reUserDetails  = array("fname" => '',"lname" => '',"uemail" => '',"uphone" => '');
       require_once('views/user/addnewuser.php');
     }
     public function managereport() {
@@ -29,23 +32,25 @@
 
       require_once('views/user/nonadminreport.php');
     }
-    public function registeruser($arrInsertData){
-
+    public function registeruser(){
       //print_r($_POST);
-     $arrInsertData = UserModel::insertUser($_POST);
+     $arrInsertData = UserModel::insertUpdateUser($_POST);
      if($arrInsertData){
        echo 'sucessfully inserted data';
+         header("location: ".SITE_ROOT.'index.php?controller=user&action=manageuser');
       }
        else
       {
-         echo 'not inserted';
+        header("location: ".SITE_ROOT.'index.php?controller=user&action=manageuser');
       } 
+        
     }
  public function registernonadminuser($arrInsertData){
      //print_r($_POST);echo 'test';die();
      $arrInsertData = UserModel::adduser($_POST);
      if($arrInsertData){
        echo 'sucessfully inserted data';
+         
       }
        else
       {
@@ -55,9 +60,7 @@
 
 public function deletemanageuser() {
     $deleteID = $_GET['delid'];
-    //echo  $deleteID;
     if(isset($_GET['delid'])){
-    // we use the given id to get the right post
      $deleteID = UserModel::deleteuser($_GET['delid']);
     header("location: ".SITE_ROOT.'index.php?controller=user&action=manageuser'); 
      //echo "deleted";
@@ -69,15 +72,20 @@ public function deletemanageuser() {
     }
 public function editmanageuser() {
     $editID = $_GET['editid'];
-    echo $editID;
     if(isset($_GET['editid'])){
-    $editID =  UserModel::edituser($_GET['editid']);
+    $editUserDetails =  UserModel::edituser($_GET['editid']);
         echo "got one record";
     }
     else
     {
         echo "not get data";
-    }
+    } 
+    $reUserDetails  = array("fname" => $editUserDetails['user_firstname'],"lname" => $editUserDetails['user_lastname'],"uemail" => $editUserDetails['user_email'],"uphone" => $editUserDetails['user_phone']);
+   // echo $reUserDetails['uphone'];
+    //die;
+    $actflag = "updateuser";    
+    require_once('views/user/addnewuser.php');
 }
+      
   }
 ?>

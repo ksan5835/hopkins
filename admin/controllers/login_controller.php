@@ -5,7 +5,7 @@ session_start();
     
 public function login() {
       // we store all the posts in a variable
-     
+     $error = "username/password incorrect";
       require_once('views/login/login.php');
     } 
 public function error() {
@@ -14,16 +14,14 @@ public function error() {
 
 public function processlogin(){
     //print_r($_SESSION);
-    $error = "username/password incorrect";
      $_SESSION['hpusername'] = '$loUsername';
       $getLoggedData = LoginModel::adminLogin($_POST);
       if($getLoggedData){
           header("location: ".SITE_ROOT.'index.php?controller=home&action=dashboard');
       }
     else{
-         echo $error;
-        //header("location: ".SITE_ROOT.'index.php?controller=login&processlogin');
-         // header("location: ".SITE_ROOT.'index.php?controller=login&action=error');
+        echo $error;
+        header("location: ".SITE_ROOT.'index.php?controller=login&processlogin');
       }
    
 

@@ -17,9 +17,11 @@
                 <div class="divider"></div>
                 Contents will come here
                 <div class="divider"></div>
-                <?php if (isset($error)) { ?> 
+<!--
+                <?php if(!$getLoggedData) { ?> 
                 <small style="color:#aa000; "><?php echo $error; ?> </small>
     <?php } ?>
+-->
             </div>
             <div class="col-md-7">
                 <form method="post" action="<?php echo SITE_ROOT;?>index.php?controller=login&action=processlogin">

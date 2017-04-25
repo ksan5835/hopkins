@@ -23,7 +23,7 @@
                 <span class="required">*</span>
             </label>
                     <div class="col-sm-8">
-                        <input class="form-control" type="text" id="email" name="hpuserfirstname" required>
+                        <input class="form-control" type="text" name="hpuserfirstname" value="<?php echo @$reUserDetails['fname'];?>"  required >
                     </div>
                 </div>
                 <div class="form-group">
@@ -32,7 +32,7 @@
                 <span class="required">*</span>
                    </label>
                     <div class="col-sm-8">
-                        <input class="form-control" type="text" id="email" name="hpuserlastname" required>
+                        <input class="form-control" type="text" value="<?php echo @$reUserDetails['lname'];?>" name="hpuserlastname" required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -41,14 +41,14 @@
                 <span class="required">*</span>
                     </label>
                     <div class="col-sm-8">
-                        <input class="form-control" type="email" id="email" name="hpuseremail" data-parsley-trigger="change" required>
+                        <input class="form-control" type="email" id="email" value="<?php echo @$reUserDetails['uemail'];?>" name="hpuseremail" data-parsley-trigger="change" required>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="" class="col-sm-2 control-label">Phone:</label>
                     <div class="col-sm-8">
-                        <input type="text" name="hpuserphone" class="input-mask form-control" data-inputmask="&apos;mask&apos;:&apos;999-999-9999&apos;" required>
+                        <input type="text" name="hpuserphone" value="<?php echo @$reUserDetails['uphone'];?>" class="input-mask form-control" data-inputmask="&apos;mask&apos;:&apos;999-999-9999&apos;" required>
                         <div class="help-block">999-999-9999</div>
                     </div>
                 </div>
@@ -60,18 +60,21 @@
                     <div class="col-sm-8">
                         <form>
 
-                            <select class="form-control" required>
+                <select class="form-control" required name="hpcategory">
                 <option>Select</option>
-                <option>Admin</option>
-                <option>Manager</option>
-                <option>User</option>
-                <option>Test</option>
-                  </select>
+                <option value="admin">Admin</option>
+                <option value="manager">Manager</option>
+                <option value="user">User</option>
+                <option value="test">Test</option>
+                </select>
 
                         </form>
                         <div class="divider"></div>
                         <div class="form-group">
-                            <input type="hidden" name="superhidden" id="superhidden">
+<!--                            <input type="hidden" name="superhidden" id="superhidden">-->
+
+                            <input type="text" name="updateuserid" value="<?php echo $actflag;?>" />
+                            <input type="text" name="saveflag" value="<?php echo $actflag;?>" />
                             <div class="col-sm-offset-2 col-sm-8">
                                 <button class="btn btn-md btn-primary">
                                        Submit
