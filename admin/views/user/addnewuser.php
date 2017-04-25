@@ -71,9 +71,7 @@
                         </form>
                         <div class="divider"></div>
                         <div class="form-group">
-<!--                            <input type="hidden" name="superhidden" id="superhidden">-->
-
-                            <input type="text" name="updateuserid" value="<?php echo $actflag;?>" />
+                            <input type="text" name="updateuserid" value="<?php echo @$reUserDetails['uid'];?>" />
                             <input type="text" name="saveflag" value="<?php echo $actflag;?>" />
                             <div class="col-sm-offset-2 col-sm-8">
                                 <button class="btn btn-md btn-primary">

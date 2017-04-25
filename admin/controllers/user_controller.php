@@ -33,7 +33,7 @@
       require_once('views/user/nonadminreport.php');
     }
     public function registeruser(){
-      //print_r($_POST);
+    // print_r($_POST);
      $arrInsertData = UserModel::insertUpdateUser($_POST);
      if($arrInsertData){
        echo 'sucessfully inserted data';
@@ -41,7 +41,8 @@
       }
        else
       {
-        header("location: ".SITE_ROOT.'index.php?controller=user&action=manageuser');
+           //echo "update data";
+       // header("location: ".SITE_ROOT.'index.php?controller=user&action=manageuser');
       } 
         
     }
@@ -72,6 +73,7 @@ public function deletemanageuser() {
     }
 public function editmanageuser() {
     $editID = $_GET['editid'];
+    //echo $editID;
     if(isset($_GET['editid'])){
     $editUserDetails =  UserModel::edituser($_GET['editid']);
         echo "got one record";
@@ -80,12 +82,11 @@ public function editmanageuser() {
     {
         echo "not get data";
     } 
-    $reUserDetails  = array("fname" => $editUserDetails['user_firstname'],"lname" => $editUserDetails['user_lastname'],"uemail" => $editUserDetails['user_email'],"uphone" => $editUserDetails['user_phone']);
-   // echo $reUserDetails['uphone'];
+    $reUserDetails  = array("fname" => $editUserDetails['user_firstname'],"lname" => $editUserDetails['user_lastname'],"uemail" => $editUserDetails['user_email'],"uphone" => $editUserDetails['user_phone'],"uid" => $editID );
+    echo $reUserDetails['uphone'];
     //die;
     $actflag = "updateuser";    
     require_once('views/user/addnewuser.php');
-}
-      
+}   
   }
 ?>
