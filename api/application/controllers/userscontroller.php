@@ -29,12 +29,14 @@ class UsersController extends VanillaController {
 		$this->set('user_available',$user_available);
 		
 		if(!empty($user_available)){
-			$status = '200';
+			$json_result = '{"Message":"User available","Status":1,"ResponseStatus":200}';
+			$result_available = json_decode($json_result, true);
 		}else{
-			$status = '404';
+			$json_result = '{"Message":"User Not available","Status":0,"ResponseStatus":404}';
+			$result_available = json_decode($json_result, true);
 		}
 		
-		return json_decode($status,'true');
+		return $result_available;
 	}
 
 
