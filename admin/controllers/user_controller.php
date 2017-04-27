@@ -11,7 +11,6 @@
       // we store all the posts in a variable
      //echo "welcome to dashboard";
       $actflag = "addnew"; 
-        
          //$reUserDetails  = array("fname" => '',"lname" => '',"uemail" => '',"uphone" => '');
       require_once('views/user/addnewuser.php');
     }
@@ -33,7 +32,7 @@
       require_once('views/user/nonadminreport.php');
     }
     public function registeruser(){
-     
+
      $arrInsertData = UserModel::insertUpdateUser($_POST);
      if($arrInsertData){
        echo 'sucessfully inserted data';
@@ -45,9 +44,7 @@
      $arrInsertData = UserModel::adduser($_POST);
      if($arrInsertData){
        echo 'sucessfully inserted data';
-         
       }
-       else
       {
          echo 'not inserted';
       } 
@@ -68,7 +65,7 @@ public function deletemanageuser() {
 
 public function editmanageuser() {
     $editID = $_GET['editid'];
-    //echo $editID;
+    echo $editID;
     if(isset($_GET['editid'])){
     $editUserDetails =  UserModel::edituser($_GET['editid']);
         echo "got one record";
@@ -78,9 +75,8 @@ public function editmanageuser() {
         echo "not get data";
     } 
     $reUserDetails  = array("fname" => $editUserDetails['user_firstname'],"lname" => $editUserDetails['user_lastname'],"uemail" => $editUserDetails['user_email'],"uphone" => $editUserDetails['user_phone'],"uid" => $editID );
-    echo $reUserDetails['uphone'];
-    //die;
-    
+    echo $editUserDetails['user_lastname'];
+
     $actflag = "updateuser";    
     require_once('views/user/addnewuser.php');
 }   

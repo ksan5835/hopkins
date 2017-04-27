@@ -38,16 +38,11 @@
     }
 
     public static function insertUpdateUser($arrInsertData){
-
-      print_r($arrInsertData);
-        
         $reValue = 0;
  
-        $saveFlag = $arrInsertData['saveflag'];
-        $updateFlag = $arrInsertData['updateuserid'];
-       // print_r($arrInsertData['updateuserid']);die();
+        $saveFlag = trim($arrInsertData['saveflag']);
         if($saveFlag == "addnew"){           
-        //echo "Demo from model";die();
+
             $userfirstname = $arrInsertData['hpuserfirstname'];
             $userlastname = $arrInsertData['hpuserlastname'];
             $useremail = $arrInsertData['hpuseremail'];
@@ -57,21 +52,23 @@
             $req = $db->prepare('insert into hp_adminusers ( user_firstname,user_lastname,user_email,user_phone ) values ( :fname,:lname,:uemail,:uphone)');
             $reValue = $req->execute(array('fname' => $userfirstname,'lname' => $userlastname,'uemail' => $useremail,'uphone' => $userphone));
             
-        }
-       // print_r($arrInsertData);
+        }else
         
-         if($updateFlag == "updateuser"){           
-        
+         if($saveFlag == "updateuser"){           
+
+            //echo "test"; 
             $userfirstname = $arrInsertData['hpuserfirstname'];
             $userlastname = $arrInsertData['hpuserlastname'];
             $useremail = $arrInsertData['hpuseremail'];
             $userphone = $arrInsertData['hpuserphone'];  
-              $updateuserid = $arrInsertData['updateuserid'];
-             $db = Db::getInstance();
-            $req = $db->prepare('UPDATE hp_adminusers SET user_firstname = :fname,user_lastname = :lname,user_email = :uemail,user_phone = : uphone WHERE id = :id');
-            //echo $req;
-            $reValue = $req->execute(array('fname' => $userfirstname,'lname' => $userlastname,'uemail' => $useremail,'uphone' => $userphone,'id' => $updateuserid ));
-        }
+            $updateuserid = $arrInsertData['updateuserid'];  
+            $db = Db::getInstance();
+            $req = $db->prepare('UPDATE hp_adminusers SET user_firstname = :fname,user_lastname = :lname,user_email = :uemail,user_phone = :uphone WHERE id = :uid');
+             
+        
+            $reValue = $req->execute(array('fname' => $userfirstname,'lname' => $userlastname,'uemail' => $useremail,'uphone' => $userphone,'uid' => $updateuserid ));
+        echo $reValue;
+         }
   
       return $reValue;
     }
@@ -88,7 +85,7 @@
      }
       public static function deleteuser($deleteID) {
       $db = Db::getInstance();
-          echo $deleteID;
+          //echo $deleteID;
       $deleteID = intval($deleteID);
       $req = $db->prepare('DELETE FROM hp_adminusers WHERE id = :id');
       $req->execute(array('id' => $deleteID));
