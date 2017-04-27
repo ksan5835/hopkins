@@ -47,6 +47,7 @@
     $req->execute(array('adminemail' => $loUsername,'adminpwd' => $lopassword));
     $reUserData = $req->fetch();  
     return $reUserData;
+
     }
 
   }

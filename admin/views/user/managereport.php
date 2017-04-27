@@ -59,8 +59,32 @@
     </div>
 
                             </div>
+    
+    <button class="btn btn-default btn-md" data-toggle="modal" data-target="#myModal">
+            Launch demo modal
+        </button>
+
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Modal title</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Modal content here ...</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 </div><!-- #page-content -->
 
                 </div><!-- #page-content-wrapper -->
+<script type="text/javascript" src="<?php echo TEMPLATE_PATH; ?>/assets-minified/widgets/modal/modal.js"></script>
+
  <?php  require_once('templates/hopkins/footer_dashboard.php '); ?>

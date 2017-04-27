@@ -60,7 +60,7 @@
                     <div class="col-sm-8">
                         <form>
 
-                <select class="form-control" required name="hpcategory">
+                <select class="form-control"  name="hpcategory" required>
                 <option>Select</option>
                 <option value="admin">Admin</option>
                 <option value="manager">Manager</option>

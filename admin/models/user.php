@@ -39,34 +39,36 @@
 
     public static function insertUpdateUser($arrInsertData){
         $reValue = 0;
- 
         $saveFlag = trim($arrInsertData['saveflag']);
+
         if($saveFlag == "addnew"){           
 
             $userfirstname = $arrInsertData['hpuserfirstname'];
             $userlastname = $arrInsertData['hpuserlastname'];
             $useremail = $arrInsertData['hpuseremail'];
             $userphone = $arrInsertData['hpuserphone'];  
+            $ucat = $arrInsertData['hpcategory'];  
             
             $db = Db::getInstance();
-            $req = $db->prepare('insert into hp_adminusers ( user_firstname,user_lastname,user_email,user_phone ) values ( :fname,:lname,:uemail,:uphone)');
-            $reValue = $req->execute(array('fname' => $userfirstname,'lname' => $userlastname,'uemail' => $useremail,'uphone' => $userphone));
+ $req = $db->prepare('insert into hp_adminusers ( user_firstname,user_lastname,user_email,user_phone,user_activestatus ) values ( :fname,:lname,:uemail,:uphone,:ucat)');
+            $reValue = $req->execute(array('fname' => $userfirstname,'lname' => $userlastname,'uemail' => $useremail,'uphone' => $userphone,'ucat' => $ucat ));
             
         }else
         
          if($saveFlag == "updateuser"){           
 
-            //echo "test"; 
+            echo "test"; 
             $userfirstname = $arrInsertData['hpuserfirstname'];
             $userlastname = $arrInsertData['hpuserlastname'];
             $useremail = $arrInsertData['hpuseremail'];
             $userphone = $arrInsertData['hpuserphone'];  
             $updateuserid = $arrInsertData['updateuserid'];  
+            $ucat = $arrInsertData['hpcategory'];
             $db = Db::getInstance();
-            $req = $db->prepare('UPDATE hp_adminusers SET user_firstname = :fname,user_lastname = :lname,user_email = :uemail,user_phone = :uphone WHERE id = :uid');
+            $req = $db->prepare('UPDATE hp_adminusers SET user_firstname = :fname,user_lastname = :lname,user_email = :uemail,user_phone = :uphone,user_activestatus = :ucat WHERE id = :uid');
              
         
-            $reValue = $req->execute(array('fname' => $userfirstname,'lname' => $userlastname,'uemail' => $useremail,'uphone' => $userphone,'uid' => $updateuserid ));
+            $reValue = $req->execute(array('fname' => $userfirstname,'lname' => $userlastname,'uemail' => $useremail,'uphone' => $userphone,'uid' => $updateuserid,'ucat' => $ucat ));
         echo $reValue;
          }
   

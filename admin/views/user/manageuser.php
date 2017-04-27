@@ -22,8 +22,8 @@
                     </thead>
                     <tbody>
                         <?php for($i=0;$i<count($arrGetData);$i++) { ?>
-                        <?php $userData = $arrGetData[$i];
-                ?>
+                        <?php $userData = $arrGetData[$i];?>
+                
 
             <tr>
             <td><?php echo $i + 1; ?></td>
