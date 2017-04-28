@@ -60,8 +60,8 @@
                     <div class="col-sm-8">
                         <form>
 
-                <select class="form-control"  name="hpcategory" required>
-                <option>Select</option>
+                <select class="form-control" name="hprole" required>
+                <option><?php echo @$reUserDetails['urole'];?></option>
                 <option value="admin">Admin</option>
                 <option value="manager">Manager</option>
                 <option value="user">User</option>
@@ -88,6 +88,8 @@
             <!-- #page-content -->
 
         </div>
+ 
+        
         <?php  require_once('templates/hopkins/footer_dashboard.php '); ?>
         <script type="text/javascript" src="<?php echo TEMPLATE_PATH; ?>/assets-minified/widgets/parsley/parsley.js"></script>
         <script type="text/javascript" src="<?php echo TEMPLATE_PATH; ?>/assets-minified/widgets/input-mask/inputmask.js"></script>
@@ -100,4 +102,5 @@
                 $(".input-mask").inputmask();
             });
         </script>
+
         <!-- #page-content-wrapper -->
