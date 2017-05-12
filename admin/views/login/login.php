@@ -35,7 +35,7 @@
                         <div class="content-box-wrapper">
                             <div class="form-group"> 
                                 <div class="input-group">
-                                    <input type="email" class="form-control" id="exampleInputEmail1" name="hpuseremail" placeholder="Enter email">
+                                    <input type="email" class="form-control" id="exampleInputEmail1" name="hpuseremail" placeholder="Enter email" autofocus>
                                     <span class="input-group-addon bg-blue">
                                         <i class="glyph-icon icon-envelope-o"></i>
                                     </span>

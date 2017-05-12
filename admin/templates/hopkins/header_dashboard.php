@@ -419,7 +419,7 @@
                         </li>
                     </ul>
                     <div class="pad5A button-pane button-pane-alt text-center">
-                        <a href="#" class="btn display-block font-normal btn-danger">
+                        <a href="<?php echo SITE_ROOT;?>index.php?controller=login&action=logout" class="btn display-block font-normal btn-danger">
                             <i class="glyph-icon icon-power-off"></i>
                             Logout
                         </a>
@@ -471,17 +471,15 @@
         <li class="header"><span>Admin Users</span></li>
          <li><a href="<?php echo SITE_ROOT;?>index.php?controller=user&action=addnewuser" title="Carousels"><span>Add New User</span></a></li>
         <li><a href="<?php echo SITE_ROOT;?>index.php?controller=user&action=manageuser" title="Carousels"><span>Manage Users</span></a></li>
-        <li><a href="<?php echo SITE_ROOT;?>index.php?controller=user&action=managereport" title="Slideshows"><span>Manage Reports</span></a></li>
-
-        
+        <li><a href="<?php echo SITE_ROOT;?>index.php?controller=user&action=addnewrole" title="Carousels"><span>Add Role</span></a></li>
+        <li><a href="<?php echo SITE_ROOT;?>index.php?controller=user&action=managerole" title="Slideshows"><span>Manage Role</span></a></li>
+<!--
     </ul>
      <ul>
         <li class="header"><span>Non Admin Users</span></li>
-         <li><a href="<?php echo SITE_ROOT;?>index.php?controller=user&action=nonadminuser" title="Add user"><span>Add New User</span></a></li>
-        <li><a href="<?php echo SITE_ROOT;?>index.php?controller=user&action=nonadminmanage" title="Admin"><span>Manage Users</span></a></li>
-        <li><a href="<?php echo SITE_ROOT;?>index.php?controller=user&action=nonadminreport" title="Reports"><span>Manage Reports</span></a></li>
-
-        
+-->
+         <li><a href="<?php echo SITE_ROOT;?>index.php?controller=user&action=addnewdepartment" title="Add user"><span>Add department</span></a></li>
+        <li><a href="<?php echo SITE_ROOT;?>index.php?controller=user&action=managedepartment" title="Admin"><span>Manage department</span></a></li>
     </ul>
 </li>  
     

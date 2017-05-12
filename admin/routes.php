@@ -29,9 +29,9 @@
 
   // we're adding an entry for the new controller and its actions
   $controllers = array('pages' => ['home', 'error'],
-  					      'login' => ['login', 'error','processlogin'],
+  					      'login' => ['login', 'error','processlogin','logout'],
                   'home' => ['dashboard'],
-                  'user' => ['addnewuser','manageuser','registeruser','registernonadminuser','managereport','nonadminuser','nonadminmanage','nonadminreport','deletemanageuser','editmanageuser'],
+                  'user' => ['addnewrole','managerole','addnewuser','manageuser','registeruser','registernonadminuser','managereport','deletemanageuser','editmanageuser','getrole','addnewdepartment','managedepartment','Insertrole','deleteuserrole','edituserrole','registerdept','deleteuserdept','edituserdept','InsertUpdaterole'],
                   'posts' => ['index', 'show']);
 
   if (array_key_exists($controller, $controllers)) {
