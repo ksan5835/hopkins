@@ -8,21 +8,23 @@
                 View all kinds of Tables examples below.
                 </small>
                 <select class="form-control" name="hprole" required onchange="showUser(this.value)">
+<!--                    <option value="" selected>select Roles</option>-->
                     <?php for($i=0;$i<count($arrGetRole);$i++) { ?>
                    <?php $userRole = $arrGetRole[$i];?>
-                    <option><?php echo $userRole['roles'];?></option>
+                    <option value=" <?php echo $userRole['role_id'];?> " > <?php echo $userRole['roles'];?></option>
                 <?php } ?>
+            
                 </select>   
-                <div id="txtHint"><b>Person info will be listed here...</b></div>
             </h3>
+                <div><h3>Person info will be listed here...</h3></div>
 
-            <div class="example-box-wrapper">
+            <div class="example-box-wrapper" id="txtHint">
                 <table class="table">
                     <thead>
                         <tr>
                             <th>S.No</th>
                             <th>User Name</th>
-                            <th>Role</th>
+<!--                            <th>Role</th>-->
                             <th>Nationality</th>
                             <th>User Email</th>
                             <th>Action</th>
@@ -36,14 +38,13 @@
             <tr>
             <td><?php echo $i + 1; ?></td>
             <td><?php echo $userData['user_name'];?></td>
-            <td><?php echo $userData['user_role'];?></td>
+<!--            <td><?php echo $userData['role_id'];?></td>-->
             <td><?php echo $userData['nationality'];?></td>
             <td><?php echo $userData['user_email'];?></td>
             <td class="text-right">
                 <a href="<?php echo SITE_ROOT;?>index.php?controller=user&action=editmanageuser&editid=<?php echo $userData['user_id'];?>" class="btn btn-sm hover-blue-alt tooltip-button" data-placement="top" title="" data-original-title="Edit">
                     <i class="glyph-icon icon-edit"></i>
                 </a>
-
                 <a href="<?php echo SITE_ROOT;?>index.php?controller=user&action=deletemanageuser&delid=<?php echo $userData['user_id'];?>" class="btn btn-sm hover-red tooltip-button" data-placement="top" title="" data-original-title="Remove">
                     <i class="glyph-icon icon-remove"></i>
                 </a>
@@ -53,7 +54,11 @@
                  <?php } ?>
                     </tbody>
                 </table>
-            </div>
+                </div>
+            
+            
+            
+            
         </div>
     </div>
 </div>
@@ -62,13 +67,14 @@
 <?php  require_once('templates/hopkins/footer_dashboard.php '); ?>
 <script>
 function showUser(str) {
-  
+  // alert(str);
+
     if (str == "") {
         document.getElementById("txtHint").innerHTML = "";
         return;
     } else {
         if (window.XMLHttpRequest) {
-           alert(str);
+          
             // code for IE7+, Firefox, Chrome, Opera, Safari
             xmlhttp = new XMLHttpRequest();
         } else {
@@ -80,7 +86,7 @@ function showUser(str) {
                 document.getElementById("txtHint").innerHTML = this.responseText;
             }
         };
-        xmlhttp.open("GET","index.php?controller=user&action=getrole&id="+str,true);
+        xmlhttp.open("GET","<?php echo SITE_ROOT;?>index.php?controller=user&action=getrole&id="+str,true);
         xmlhttp.send();
     }
 }

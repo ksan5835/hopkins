@@ -7,12 +7,16 @@ public function addnewuser() {
       $actflag = "addnew"; 
       $arrGetRole = UserModel::manageRole($_GET);
       $arrGetDept = UserModel::userdept($_GET);
-      //print_r($arrGetRole);
+      $arrGetPlace = UserModel::usercountry($_GET);
+      //print_r($arrGetPlace);
       require_once('views/user/addnewuser.php');
     }
 public function manageuser() {
       // echo "welcome to dashboard";
+      //$getroles =  UserModel::selectrole($_GET['id']);
       $arrGetRole = UserModel::manageRole($_GET);
+    
+      //print_r($arrGetRole);
       $arrGetDept = UserModel::userdept($_GET);
       $arrGetData = UserModel::manageUser($_GET);
       require_once('views/user/manageuser.php');
@@ -40,10 +44,11 @@ public function addnewdepartment() {
     }
 public function registeruser(){
       $arrInsertData = UserModel::insertUpdateUser($_POST);
+      print_r($arrInsertData);
       if($arrInsertData){
-         echo "<pre>";print_r($_POST);
+         //echo "<pre>";print_r($_POST);
          echo 'sucessfully inserted data';
-         header("location: ".SITE_ROOT.'index.php?controller=user&action=manageuser');
+        header("location: ".SITE_ROOT.'index.php?controller=user&action=manageuser');
       }
     }
 public function deletemanageuser() {
@@ -68,19 +73,20 @@ public function editmanageuser() {
     $arrGetDept = UserModel::userdept($_GET);
     if(isset($_GET['editid'])){
     $editUserDetails =  UserModel::edituser($_GET['editid']);
-        
         echo "got one record";
     }
     else
     {
         echo "not get data";
     } 
-    $reUserDetails  = array("username" => $editUserDetails['user_name'],"radio" => $editUserDetails['gender'],"dob" => $editUserDetails['date_of_birth'],"department" => $editUserDetails['user_department'],"updateuserid" => $editID,"userrole" => $editUserDetails['user_role'],"userphone" => $editUserDetails['user_ph'],"useraddress" => $editUserDetails['address'],"useremail" => $editUserDetails['user_email'],"userexp" => $editUserDetails['user_exp'],"prework" => $editUserDetails['prev_work'],"nationality" => $editUserDetails['nationality'],"qualification" => $editUserDetails['qualification'],"language" => $editUserDetails['languages'],"jobtype" => $editUserDetails['job_type']);
+    $reUserDetails  = array("username" => $editUserDetails['user_name'],"radio" => $editUserDetails['gender'],"dob" => $editUserDetails['date_of_birth'],"department" => $editUserDetails['user_department'],"updateuserid" => $editID,"userrole" => $editUserDetails['role_id'],"userphone" => $editUserDetails['user_ph'],"useraddress" => $editUserDetails['address'],"useremail" => $editUserDetails['user_email'],"userexp" => $editUserDetails['user_exp'],"prework" => $editUserDetails['prev_work'],"nationality" => $editUserDetails['nationality'],"qualification" => $editUserDetails['qualification'],"language" => $editUserDetails['languages'],"jobtype" => $editUserDetails['job_type']);
     //echo $editUserDetails['address'];
+      //print_r($reUserDetails);
     $actflag = "updateuser";    
     require_once('views/user/addnewuser.php');
     }
-public function Insertrole(){
+public function Insertrole() {
+    
     $arrInsertRole =  UserModel::insertUpdateRole($_POST);
     //print_r($_POST);
     if($arrInsertRole){
@@ -94,14 +100,14 @@ public function edituserrole() {
     $editRoleDetails =  UserModel::editrole($_GET['editid']);
     $arrGetStaffRole = UserModel::staffRole($_GET);
     echo "got one record of user role";
-    //print_r($editRoleDetails);
+    print_r($editRoleDetails);
     }
     else
     {
         echo "not get data";
     } 
     $roleDetails  = array("rolename" => $editRoleDetails['roles'],"roledesc" => $editRoleDetails['role_desc'],"chkbox" => $editRoleDetails['staff_role'],"updateroleid" => $editID);
-    print_r($roleDetails['chkbox']);
+    //print_r($roleDetails['chkbox']);
     $actflag = "updaterole";    
     require_once('views/user/addnewrole.php');
     }
@@ -121,7 +127,6 @@ public function deleteuserrole() {
      }
     }
 public function registerdept(){
-
      $arrInsertDept = UserModel::insertUpdateDept($_POST);
      if($arrInsertDept){
      echo 'sucessfully inserted data';
@@ -146,7 +151,7 @@ public function edituserdept() {
     }
 public function deleteuserdept() {
     if(isset($_GET['delid'])){
-    echo $_GET['delid'];
+    //echo $_GET['delid'];
     }
     $deleteID = $_GET['delid'];
     if(isset($_GET['delid'])){
@@ -164,10 +169,59 @@ public function getrole() {
     $roleID = $_GET['id'];
     if(isset($_GET['id'])){
     $getroles =  UserModel::selectrole($_GET['id']);
-    echo "got one record";
-    require_once('views/user/manageuser.php');
+    
+        $strBuildTable = "<table class='table'>
+                    <thead>
+                        <tr>
+                            <th>S.No</th>
+                            <th>User Name</th>
+                            <th>Role id</th>
+                            <th>User Email</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>";
+        
+        for($i=0;$i<count($getroles);$i++){
+        
+            $userData = $getroles[$i];
+            $strBuildTable .= "<tr>";
+            $strBuildTable .= "<td>".($i+1)."</td>";
+            $strBuildTable .= "<td>".$userData['user_name']."</td>";            
+            $strBuildTable .= "<td>".$userData['role_id']."</td>";            
+            $strBuildTable .= "<td>".$userData['user_email']."</td>";
+                       
+            $strBuildTable .= "<td align=center width=100><a href='".SITE_ROOT."index.php?controller=user&action=editmanageuser&editid=".$userData['user_id']."' class='btn btn-sm hover-blue-alt tooltip-button'><i class='glyph-icon icon-edit'></i></a>
+            <a href='".SITE_ROOT."index.php?controller=user&action=deletemanageuser&delid=".$userData['user_id']."' class='btn btn-sm hover-blue-alt tooltip-button'><i class='glyph-icon icon-remove'></i></a>
+            </td>";
+            
+            $strBuildTable .= "</tr>";
         }
+            $strBuildTable .= "</tbody></table>";
+            echo $strBuildTable;
+     
     }
+    }
+    
+    
+    public function getstate() {
+     
+    $countryID = $_POST['id'];
+    if($countryID){
+    $getstates =  UserModel::userstate($countryID);
+       for($i=0;$i<count($getstates);$i++) {
+          $userstate = $getstates[$i];
+          $str .= "<option value=".$userstate['id']."> ".$userstate['name']." </option>";
+       }
+   
+        
+    //print_r($getstates);
+    }
+        echo $str;
+        //die;
     }
   
+    
+    
+    }
 ?>

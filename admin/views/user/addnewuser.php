@@ -27,12 +27,12 @@
                     <div class="col-sm-8">
                         <div class="col-sm-4">
                             <div class="radio">
-                                <label><input type="radio" name="radio" value="<?php echo @$reUserDetails['radio'];?>">Male</label>
+                                <label><input type="radio" name="radio" value="male">Male</label>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="radio">
-                                <label><input type="radio" name="radio" value="<?php echo @$reUserDetails['radio'];?>">Female</label>
+                                <label><input type="radio" name="radio" value="female">Female</label>
                             </div>
                         </div>
                     </div>
@@ -64,15 +64,14 @@
 
                 <div class="form-group">
                     <label for="" class="col-sm-2 control-label">
-                               Role:
-                                <span class="required">*</span>
+                Role:
+                    <span class="required">*</span>
                     </label>
                     <div class="col-sm-8">
-
-                        <select class="form-control" name="userrole" required onchange="showUser(this.value)">
+                 <select class="form-control" name="userroleid" required onchange="showUser(this.value)">
                     <?php for($i=0;$i<count($arrGetRole);$i++) { ?>
                    <?php $userRole = $arrGetRole[$i];?>
-                    <option><?php echo $userRole['roles'];?></option>
+                    <option value="<?php echo @$userRole['role_id'];?>"><?php echo $userRole['roles'];?></option>
                 <?php } ?>
                 </select>
                     </div>
@@ -122,7 +121,7 @@
                             <i class="glyph-icon icon-calendar"></i>
                         </span>
                             <input style="width: 200px" name="userexp" id="daterangepicker-example" class="form-control" value="03/18/2013 - 03/23/2013" type="text">
-                            <!--                    <input type="text" style="width: 200px" name="userexp" id="daterangepicker-example" class="form-control" value="<?php echo @$reUserDetails['userexp'];?>">-->
+                            <!--<input type="text" style="width: 200px" name="userexp" id="daterangepicker-example" class="form-control" value="<?php echo @$reUserDetails['userexp'];?>">-->
                         </div>
                     </div>
                 </div>
@@ -171,6 +170,29 @@
                         <input class="form-control" type="text" name="jobtype" value="<?php echo @$reUserDetails['jobtype'];?>" required>
                     </div>
                 </div>
+                
+                
+                 <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">
+Place:<span class="required">*</span>
+                            </label>
+                    <div class="col-sm-3">
+                <select class="form-control" name="country" id="country-list" class="demoInputBox" onChange="getState(this.value);" required>
+                    <?php for($i=0;$i<count($arrGetPlace);$i++) { ?>
+                   <?php $userplace = $arrGetPlace[$i];?>
+        <option value="<?php echo $userplace['id'];?>"><?php echo $userplace['name'];?></option>
+                <?php } ?>
+                </select>
+                    </div>
+                <div class="col-sm-3">
+                <select class="form-control" name="state" id="state-list" class="demoInputBox" required>
+                       <?php for($i=0;$i<count($getstates);$i++) { ?>
+                   <?php $userstate = $getstates[$i];?>
+                 <option value="<?php echo $userstate['id'];?>"><?php echo $userstate['name'];?></option>
+                      <?php } ?>
+                </select>
+                    </div>
+                </div>
                 <div class="col-sm-offset-2 col-sm-8">
                     <div class="divider"></div>
                     <div class="form-group">
@@ -179,7 +201,7 @@
                     </div>
                     <button class="btn btn-md btn-primary">
                                        Submit
-                                </button>
+                    </button>
                 </div>
             </form>
 
@@ -212,5 +234,22 @@
         $(".input-mask").inputmask();
     });
 </script>
+
+<script>
+function getState(val) {
+    //alert(val);
+	$.ajax({
+	type: "POST",
+	url: "<?php echo SITE_ROOT;?>index.php?controller=user&action=getstate",
+	data:'id='+val,
+	success: function(data){
+		$("#state-list").html(data);
+        //alert(data);
+	}
+	});
+}
+</script>
+
+<!--<div id="state-list"></div>-->
 
 <!-- #page-content-wrapper -->

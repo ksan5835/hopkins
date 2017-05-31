@@ -457,7 +457,7 @@
 </div>
 <ul>
 <li>
-    <a href="index.html" title="Applications">
+    <a href="<?php echo SITE_ROOT;?>index.php?controller=home&action=dashboard" title="Applications">
         <i class="glyph-icon icon-linecons-tv"></i>
         <span>Dashboard</span>
     </a>
