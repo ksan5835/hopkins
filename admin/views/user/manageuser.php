@@ -1,22 +1,27 @@
-<?php require_once('templates/hopkins/header_dashboard.php '); ?>
-<div id="page-content-wrapper" class="rm-transition">
+<?php 
+require_once('templates/hopkins/header_dashboard.php');
+	echo "<div id='content'>";
+
+?>
+
+    <div id="page-content-wrapper" class="rm-transition">
     <div id="page-content">
         <div class="page-box">
             <h3 class="page-title">
-                Manage Users
-                <small>
-                View all kinds of Tables examples below.
-                </small>
+                Manage Users  </h3>
+                <div class="form-group">
+                    <div class="col-sm-2"><b>Filter By:</b></div>
+                    
+                <div class="col-sm-8">
                 <select class="form-control" name="hprole" required onchange="showUser(this.value)">
-<!--                    <option value="" selected>select Roles</option>-->
+                    <option value="" selected="selected" disabled>select Role</option>
                     <?php for($i=0;$i<count($arrGetRole);$i++) { ?>
                    <?php $userRole = $arrGetRole[$i];?>
                     <option value=" <?php echo $userRole['role_id'];?> " > <?php echo $userRole['roles'];?></option>
                 <?php } ?>
-            
-                </select>   
-            </h3>
-                <div><h3>Person info will be listed here...</h3></div>
+                </select>
+                </div>
+                </div>
 
             <div class="example-box-wrapper" id="txtHint">
                 <table class="table">
@@ -24,8 +29,6 @@
                         <tr>
                             <th>S.No</th>
                             <th>User Name</th>
-<!--                            <th>Role</th>-->
-                            <th>Nationality</th>
                             <th>User Email</th>
                             <th>Action</th>
                         </tr>
@@ -38,8 +41,6 @@
             <tr>
             <td><?php echo $i + 1; ?></td>
             <td><?php echo $userData['user_name'];?></td>
-<!--            <td><?php echo $userData['role_id'];?></td>-->
-            <td><?php echo $userData['nationality'];?></td>
             <td><?php echo $userData['user_email'];?></td>
             <td class="text-right">
                 <a href="<?php echo SITE_ROOT;?>index.php?controller=user&action=editmanageuser&editid=<?php echo $userData['user_id'];?>" class="btn btn-sm hover-blue-alt tooltip-button" data-placement="top" title="" data-original-title="Edit">
@@ -61,10 +62,14 @@
             
         </div>
     </div>
-</div>
+    </div>
 <!-- #page-content-wrapper -->
 
-<?php  require_once('templates/hopkins/footer_dashboard.php '); ?>
+        
+<?php 
+
+	 require_once('templates/hopkins/footer_dashboard.php ');
+?>
 <script>
 function showUser(str) {
   // alert(str);

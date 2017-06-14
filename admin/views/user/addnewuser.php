@@ -1,13 +1,14 @@
-<?php require_once('templates/hopkins/header_dashboard.php '); ?>
+<?php 
+	
+	require_once('templates/hopkins/header_dashboard.php');
+?>
+
 <div id="page-content-wrapper" class="rm-transition">
 
     <div id="page-content">
         <div class="page-box">
             <h3 class="page-title">
                 Add new Users
-                <small>
-            View all kinds of Tables examples below.
-                </small>
             </h3>
             <form id="demo-form" class="form-horizontal" method="post" action="<?php echo SITE_ROOT;?>index.php?controller=user&action=registeruser" data-parsley-validate="">
                 <div class="form-group">
@@ -16,7 +17,7 @@
                 <span class="required">*</span>
                     </label>
                     <div class="col-sm-8">
-                        <input class="form-control" type="text" name="username" value="<?php echo @$reUserDetails['username'];?>" required>
+                        <input class="form-control" autocomplete="off" type="text" name="username" value="<?php echo @$reUserDetails['username'];?>" required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -25,20 +26,27 @@
                 <span class="required">*</span>
                     </label>
                     <div class="col-sm-8">
+                        <?php 
+                          $arrGender = array('male','female');
+                          
+                           //print_r($reUserDetails);
+                        
+                for($i=0;$i<count($arrGender);$i++){
+                $checkedStatus = (@$reUserDetails['gender'] == $arrGender[$i] ) ? 'checked="checked"' : "";
+                        ?> 
                         <div class="col-sm-4">
                             <div class="radio">
-                                <label><input type="radio" name="radio" value="male">Male</label>
+                                <label>
+                        <input type="radio" required autocomplete="off" name="gender" <?php echo $checkedStatus;?> value="<?php echo $arrGender[$i];?>"><?php echo $arrGender[$i];?></label>
                             </div>
                         </div>
-                        <div class="col-sm-4">
-                            <div class="radio">
-                                <label><input type="radio" name="radio" value="female">Female</label>
-                            </div>
-                        </div>
+                        
+                        <?php } ?>                        
+
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="" class="col-sm-2 control-label">
+                    <label class="col-sm-2 control-label">
                DOB:
                 <span class="required">*</span>
                     </label>
@@ -47,7 +55,7 @@
                             <span class="add-on input-group-addon">
                             <i class="glyph-icon icon-calendar"></i>
                         </span>
-                            <input style="width: 200px" class="bootstrap-datepicker form-control" value="<?php echo @$reUserDetails['dob'];?>" data-date-format="mm/dd/yy" name="dob" type="text">
+                            <input style="width: 200px" class="bootstrap-datepicker form-control" id="datepicker" value="<?php echo @$reUserDetails['dob'];?>" data-date-format="mm/dd/yy" name="dob" type="text" required>
                         </div>
                     </div>
                 </div>
@@ -57,7 +65,7 @@
                 <span class="required">*</span>
                     </label>
                     <div class="col-sm-8">
-                        <input class="form-control" type="email" id="email" value="<?php echo @$reUserDetails['useremail'];?>" name="useremail" data-parsley-trigger="change" required>
+                        <input class="form-control" autocomplete="off" type="email" value="<?php echo @$reUserDetails['useremail'];?>" name="useremail" data-parsley-trigger="change" required>
                     </div>
                 </div>
 
@@ -69,23 +77,10 @@
                     </label>
                     <div class="col-sm-8">
                  <select class="form-control" name="userroleid" required onchange="showUser(this.value)">
+                    <option value="" selected="selected" disabled>Select Role</option>
                     <?php for($i=0;$i<count($arrGetRole);$i++) { ?>
                    <?php $userRole = $arrGetRole[$i];?>
                     <option value="<?php echo @$userRole['role_id'];?>"><?php echo $userRole['roles'];?></option>
-                <?php } ?>
-                </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="" class="col-sm-2 control-label">
-                              Department:
-                            </label>
-                    <div class="col-sm-8">
-                        <select class="form-control" name="department" required>
-                    <?php for($i=0;$i<count($arrGetDept);$i++) { ?>
-                   <?php $userDept = $arrGetDept[$i];?>
-                  
-                    <option><?php echo $userDept['dept_name'];?></option>
                 <?php } ?>
                 </select>
                     </div>
@@ -95,7 +90,7 @@
                        <span class="required">*</span>
                     </label>
                     <div class="col-sm-8">
-                        <input type="text" name="userphone" value="<?php echo @$reUserDetails['userphone'];?>" class="input-mask form-control" data-inputmask="&apos;mask&apos;:&apos;999-999-9999&apos;" required>
+                        <input type="text" autocomplete="off" name="userphone" value="<?php echo @$reUserDetails['userphone'];?>" class="input-mask form-control" data-inputmask="&apos;mask&apos;:&apos;999-999-9999&apos;" required>
                         <div class="help-block">999-999-9999</div>
                     </div>
                 </div>
@@ -106,98 +101,16 @@
                 <span class="required">*</span>
                     </label>
                     <div class="col-sm-8">
-                        <textarea class="form-control" type="text" name="useraddress" value="<?php echo @$reUserDetails['address'];?>" required><?php echo @$reUserDetails['useraddress'];?></textarea>
+                        <textarea autocomplete="off" class="form-control" type="text" name="useraddress" value="<?php echo @$reUserDetails['address'];?>" required><?php echo @$reUserDetails['useraddress'];?></textarea>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="" class="col-sm-2 control-label">
-                Experience:
-                        <span class="required">*</span>
-                     </label>
-                    <div class="col-sm-8">
-                        <div class="input-prepend input-group demo-margin">
-                            <span class="add-on input-group-addon">
-                            <i class="glyph-icon icon-calendar"></i>
-                        </span>
-                            <input style="width: 200px" name="userexp" id="daterangepicker-example" class="form-control" value="03/18/2013 - 03/23/2013" type="text">
-                            <!--<input type="text" style="width: 200px" name="userexp" id="daterangepicker-example" class="form-control" value="<?php echo @$reUserDetails['userexp'];?>">-->
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="" class="col-sm-2 control-label">
-              Previous Work Done:
-                <span class="required">*</span>
-                    </label>
-                    <div class="col-sm-8">
-                        <input class="form-control" type="text" name="prework" value="<?php echo @$reUserDetails['prework'];?>" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="" class="col-sm-2 control-label">
-              Nationality:
-                <span class="required">*</span>
-                    </label>
-                    <div class="col-sm-8">
-                        <input class="form-control" type="text" name="nationality" value="<?php echo @$reUserDetails['nationality'];?>" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="" class="col-sm-2 control-label">
-             Qualification:
-                <span class="required">*</span>
-                    </label>
-                    <div class="col-sm-8">
-                        <input class="form-control" type="text" name="qualification" value="<?php echo @$reUserDetails['qualification'];?>" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="" class="col-sm-2 control-label">
-             Known languages:
-                <span class="required">*</span>
-                    </label>
-                    <div class="col-sm-8">
-                        <input class="form-control" type="text" name="language" value="<?php echo @$reUserDetails['language'];?>" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="" class="col-sm-2 control-label">
-              Job Type:
-                <span class="required">*</span>
-                    </label>
-                    <div class="col-sm-8">
-                        <input class="form-control" type="text" name="jobtype" value="<?php echo @$reUserDetails['jobtype'];?>" required>
-                    </div>
-                </div>
                 
-                
-                 <div class="form-group">
-                    <label for="" class="col-sm-2 control-label">
-Place:<span class="required">*</span>
-                            </label>
-                    <div class="col-sm-3">
-                <select class="form-control" name="country" id="country-list" class="demoInputBox" onChange="getState(this.value);" required>
-                    <?php for($i=0;$i<count($arrGetPlace);$i++) { ?>
-                   <?php $userplace = $arrGetPlace[$i];?>
-        <option value="<?php echo $userplace['id'];?>"><?php echo $userplace['name'];?></option>
-                <?php } ?>
-                </select>
-                    </div>
-                <div class="col-sm-3">
-                <select class="form-control" name="state" id="state-list" class="demoInputBox" required>
-                       <?php for($i=0;$i<count($getstates);$i++) { ?>
-                   <?php $userstate = $getstates[$i];?>
-                 <option value="<?php echo $userstate['id'];?>"><?php echo $userstate['name'];?></option>
-                      <?php } ?>
-                </select>
-                    </div>
-                </div>
                 <div class="col-sm-offset-2 col-sm-8">
                     <div class="divider"></div>
                     <div class="form-group">
-                        <input type="text" name="updateuserid" value="<?php echo @$reUserDetails['updateuserid'];?>" />
-                        <input type="text" name="saveflag" value="<?php echo @$actflag;?>" />
+                        <input type="hidden" name="updateuserid" value="<?php echo @$reUserDetails['updateuserid'];?>" />
+                        <input type="hidden" name="saveflag" value="<?php echo @$actflag;?>" />
                     </div>
                     <button class="btn btn-md btn-primary">
                                        Submit
@@ -210,21 +123,22 @@ Place:<span class="required">*</span>
 
         </div>
     </div>
-</div>
-<?php  require_once('templates/hopkins/footer_dashboard.php '); ?>
+    </div>
+        
+<?php 
+
+	 require_once('templates/hopkins/footer_dashboard.php ');
+?>
+        
 <script type="text/javascript" src="<?php echo TEMPLATE_PATH; ?>/assets-minified/widgets/parsley/parsley.js"></script>
 <script type="text/javascript" src="<?php echo TEMPLATE_PATH; ?>/assets-minified/widgets/input-mask/inputmask.js"></script>
-<script type="text/javascript" src="<?php echo TEMPLATE_PATH; ?>/assets-minified/widgets/datepicker/datepicker.js"></script>
-<script type="text/javascript" src="<?php echo TEMPLATE_PATH; ?>/assets-minified/widgets/datepicker/daterangepicker/daterangepicker.js"></script>
-<script type="text/javascript">
-    /* Datepicker bootstrap */
+<script type="text/javascript" src="<?php echo TEMPLATE_PATH; ?>/assets-minified/widgets/datepicker-ui/datepicker.js"></script>
 
-    $(function() {
-        $('.bootstrap-datepicker').bsdatepicker({
-            format: 'mm-dd-yyyy'
-        });
-    });
-</script>
+  <script>
+  $( function() {
+    $( "#datepicker" ).datepicker();
+  } );
+  </script>
 
 <script type="text/javascript">
     /* Input masks */
@@ -235,21 +149,6 @@ Place:<span class="required">*</span>
     });
 </script>
 
-<script>
-function getState(val) {
-    //alert(val);
-	$.ajax({
-	type: "POST",
-	url: "<?php echo SITE_ROOT;?>index.php?controller=user&action=getstate",
-	data:'id='+val,
-	success: function(data){
-		$("#state-list").html(data);
-        //alert(data);
-	}
-	});
-}
-</script>
 
-<!--<div id="state-list"></div>-->
 
 <!-- #page-content-wrapper -->

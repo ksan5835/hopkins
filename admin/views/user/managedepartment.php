@@ -1,17 +1,14 @@
-<?php require_once('templates/hopkins/header_dashboard.php '); ?>
-<div id="page-content-wrapper" class="rm-transition">
+<?php 
+require_once('templates/hopkins/header_dashboard.php');
+	echo "<div id='content'>";
 
-
-
+?><div id="page-content-wrapper" class="rm-transition">
 
     <div id="page-content">
 
         <div class="page-box">
             <h3 class="page-title">
                 Manage Department
-                <small>
-                View all kinds of Tables examples below.
-                </small>
             </h3>
 
 
@@ -59,4 +56,7 @@
 </div>
 <!-- #page-content-wrapper -->
 
-<?php  require_once('templates/hopkins/footer_dashboard.php '); ?>
+<?php 
+
+	 require_once('templates/hopkins/footer_dashboard.php ');
+?>

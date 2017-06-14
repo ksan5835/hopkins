@@ -14,8 +14,7 @@ public function error() {
 public function processlogin(){
    //print_r($_POST);
  $error = "Enter valid username and password";
- $getLoggedData = LoginModel::adminLogin($_POST);
-
+ $getLoggedData = LoginModel::adminLogin($_POST);    
       if($getLoggedData){
           echo "logged in";
           $_SESSION['hpuseremail'] = $getLoggedData['user_email'];
