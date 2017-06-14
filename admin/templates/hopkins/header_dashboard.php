@@ -52,7 +52,7 @@
         <a href="#" class="tooltip-button hidden-desktop" title="Navigation Menu" id="responsive-open-menu">
             <i class="glyph-icon icon-align-justify"></i>
         </a>
-        <span>Bratilius <i class="opacity-80">1.0</i>
+        <span>Myhopkins <i class="opacity-80">1.0</i>
         </span>
 
         <a id="collapse-sidebar" href="#" title="">
