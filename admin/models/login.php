@@ -43,7 +43,7 @@
     $loUseremail = $arrPostData['hpuseremail'];
     $lopassword = $arrPostData['hppassword']; 
     $db = Db::getInstance();      
-    $req = $db->prepare('SELECT COUNT(*) FROM hp_adminusers WHERE user_email = :adminemail AND user_password = :adminpwd');  
+    $req = $db->prepare('SELECT * FROM hp_adminusers WHERE user_email = :adminemail AND user_password = :adminpwd');  
     $req->execute(array('adminemail' => $loUseremail,'adminpwd' => $lopassword));
     $reUserData = $req->fetch();  
     return $reUserData;

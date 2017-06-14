@@ -40,52 +40,37 @@
     public static function insertUpdateUser($arrInsertData){
             $reValue = 0;
             $saveFlag = trim($arrInsertData['saveflag']);
-            if($saveFlag == "addnew"){           
+            if($saveFlag == "addnew"){  
+                
             $username = $arrInsertData['username'];
-            $gender = $arrInsertData['radio'];
-               // echo $gender;die();
+            $gender = $arrInsertData['gender'];
             $dob = $arrInsertData['dob'];
-            $department = $arrInsertData['department'];
             $userrole = $arrInsertData['userroleid'];
             $userphone = $arrInsertData['userphone'];  
-            $useraddress = $arrInsertData['useraddress']; 
+            $useraddress = $arrInsertData['useraddress'];
             $useremail = $arrInsertData['useremail'];
-            $userexp = $arrInsertData['userexp'];  
-            $prework = $arrInsertData['prework'];  
-            $nationality = $arrInsertData['nationality'];  
-            $qualification = $arrInsertData['qualification'];  
-            $language = $arrInsertData['language'];  
-            $jobtype = $arrInsertData['jobtype'];  
             $db = Db::getInstance();
             
-            $req = $db->prepare('insert into hp_user ( user_name,gender,date_of_birth,user_department,role_id,	user_ph,address,user_email,	user_exp,prev_work,nationality,qualification,languages,job_type ) values ( :username,:radio,:dob,:department,:userrole,:userphone,:useraddress,:useremail,:userexp,:prework,:nationality,:qualification,:language,:jobtype)');
+            $req = $db->prepare('insert into hp_user ( user_name,gender,date_of_birth,role_id,user_ph,address,user_email) values ( :username,:radio,:dob,:userrole,:userphone,:useraddress,:useremail)');
 
-            $reValue = $req->execute(array('username' => $username,'radio' => $gender,'dob' => $dob,'department' => $department,'userrole' => $userrole,'userphone' => $userphone,'useraddress' => $useraddress,'useremail' => $useremail,'userexp' => $userexp,'prework' => $prework,'nationality' => $nationality,'qualification' => $qualification,'language' => $language,'jobtype' => $jobtype ));
+            $reValue = $req->execute(array('username' => $username,'radio' => $gender,'dob' => $dob,'userrole' => $userrole,'userphone' => $userphone,'useraddress' => $useraddress,'useremail' => $useremail));
             
     } else
-        
-         if($saveFlag == "updateuser"){           
+          if($saveFlag == "updateuser"){           
            
             $username = $arrInsertData['username'];
-            $gender = $arrInsertData['radio'];
-              //echo $gender;die();
+            $gender = $arrInsertData['gender'];
             $dob = $arrInsertData['dob'];
-            $department = $arrInsertData['department'];
             $userrole = $arrInsertData['userroleid'];
             $userphone = $arrInsertData['userphone'];  
             $useraddress = $arrInsertData['useraddress']; 
             $useremail = $arrInsertData['useremail'];
-            $userexp = $arrInsertData['userexp'];  
-            $prework = $arrInsertData['prework'];  
-            $nationality = $arrInsertData['nationality'];  
-            $qualification = $arrInsertData['qualification'];  
-            $language = $arrInsertData['language'];  
-            $jobtype = $arrInsertData['jobtype'];
+            
             $updateuserid = $arrInsertData['updateuserid'];
             $db = Db::getInstance();
-            $req = $db->prepare('UPDATE hp_user SET user_name = :username,gender = :radio,date_of_birth = :dob,user_department = :department,role_id = :userrole,user_ph = :userphone,address = :useraddress,user_email = :useremail,user_exp = :userexp,prev_work = :prework,nationality = :nationality,qualification = :qualification,languages = :language,job_type = :jobtype WHERE user_id = :updateuserid');
+            $req = $db->prepare('UPDATE hp_user SET user_name = :username,gender = :radio,date_of_birth = :dob,role_id = :userrole,user_ph = :userphone,address = :useraddress,user_email = :useremail WHERE user_id = :updateuserid');
           
-            $reValue = $req->execute(array('username' => $username,'radio' => $gender,'dob' => $dob,'department' => $department,'userrole' => $userrole,'userphone' => $userphone,'useraddress' => $useraddress,'useremail' => $useremail,'userexp' => $userexp,'prework' => $prework,'nationality' => $nationality,'qualification' => $qualification,'language' => $language,'jobtype' => $jobtype,'updateuserid' => $updateuserid ));
+            $reValue = $req->execute(array('username' => $username,'radio' => $gender,'dob' => $dob,'userrole' => $userrole,'userphone' => $userphone,'useraddress' => $useraddress,'useremail' => $useremail,'updateuserid' => $updateuserid ));
          }
   
       return $reValue;
@@ -132,17 +117,7 @@
             return $rolelist;
          
      }
-//Add New Staff Role-role Checkbox
-    public static function staffRole(){
-            $rolelist = [];
-            $db = Db::getInstance(); 	 
-            $req = $db->query('SELECT * FROM staff_resp'); 
-             foreach($req->fetchAll() as $row) {
-            $rolelist[] = $row;
-                }
-            return $rolelist;
-        
-     }
+
 //Add New Department dropdown
     public static function userdept(){
             $rolelist = [];
@@ -168,6 +143,7 @@
             $rolelist = [];
             $db = Db::getInstance(); 
             $editID = intval($editID);
+        
             $req = $db->prepare('SELECT * FROM hp_role WHERE role_id = :id'); 
             $req->execute(array('id' => $editID));
             $rolelist = $req->fetch();
@@ -182,25 +158,23 @@
             $rolename = $arrInsertRole['rolename'];
             $description = $arrInsertRole['roledesc'];
             $staffrole = $arrInsertRole['chkbox'];
-            $userfile = $arrInsertRole['userfile'];
-            $checkbox = implode(',',$staffrole); 
-              
+            $checkbox = implode(',',$staffrole);
+
             $db = Db::getInstance();
             
-            $req = $db->prepare('insert into hp_role ( roles,role_desc,staff_role,user_file ) values ( :rolename,:description,:staffrole,:userfile)');
+            $req = $db->prepare('insert into hp_role ( roles,role_desc,staff_role ) values ( :rolename,:description,:staffrole)');
 
-            $reValue = $req->execute(array('rolename' => $rolename,'description' => $description,'staffrole' => $checkbox,'userfile' => $userfile ));
+            $reValue = $req->execute(array('rolename' => $rolename,'description' => $description,'staffrole' => $checkbox));
             
     }else
         
          if($saveFlag == "updaterole"){           
-           
+
             $rolename = $arrInsertRole['rolename'];
             $description = $arrInsertRole['roledesc'];
-                
+             
             $staffrole = $arrInsertRole['chkbox'];
-            
-            $checkbox = implode(',',$staffrole); 
+            $checkbox = implode(',',$staffrole);
             $updateroleid = $arrInsertRole['updateroleid'];
             $db = Db::getInstance();
             $req = $db->prepare('UPDATE hp_role SET roles = :rolename,role_desc = :description,staff_role = :staffrole WHERE role_id = :updateroleid');
@@ -282,30 +256,6 @@
             return $userlist;
      }
       
-    public static function usercountry(){
-            $rolelist = [];
-            $db = Db::getInstance(); 	 
-            $req = $db->query('SELECT * FROM countries ORDER BY name'); 
-            foreach($req->fetchAll() as $row) {
-            $rolelist[] = $row;
-                }
-            return $rolelist;
-        
-     }
-      
-    public static function userstate($countryID){
-            $list = [];
-            $db = Db::getInstance(); 
-            $countryID = intval($countryID);
-            $req = $db->prepare('SELECT * FROM states WHERE country_id = :id'); 
-            $req->execute(array('id' => $countryID));
-            foreach($req->fetchAll() as $row) {
-            $list[] = $row;
-            }
-            return $list;
-     }
-      
-      
-      
+ 
   }
 ?>
