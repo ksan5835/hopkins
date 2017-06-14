@@ -1,4 +1,4 @@
-<?php require_once('templates/hopkins/header_dashboard.php '); ?>
+<?php require_once('templates/hopkins/header_dashboard.php'); ?>
 <div id="page-content-wrapper" class="rm-transition">
    
                     

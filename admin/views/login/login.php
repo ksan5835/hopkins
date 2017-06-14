@@ -1,4 +1,4 @@
-<?php  require_once('templates/hopkins/header_login.php '); ?>
+<?php  require_once('templates/hopkins/header_login.php'); ?>
 <style type="text/css">
 
     body {
@@ -7,6 +7,7 @@
     }
 
 </style>
+
 <div class="center-vertical">
     <div class="center-content">
         <div class="col-md-6 clearfix center-margin">
